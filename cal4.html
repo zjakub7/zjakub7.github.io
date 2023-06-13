@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <!-- ** Basic Page Needs ** -->
+  <meta charset="utf-8">
+  <title>Kalkulator podrozy</title>
+
+  <!-- ** Mobile Specific Metas ** -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Portfolio HTML Template">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="author" content="Themefisher">
+  <meta name="generator" content="Themefisher Html5 Portfolio Template v1.0">
+
+  <!-- Essential Stylesheets -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i|Open+Sans:400,600,700,800">
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/animate.css">
+  <link rel="stylesheet" href="plugins/slick/slick.css">
+  <link rel="stylesheet" href="plugins/slick/slick-theme.css">
+  <link rel="stylesheet" href="plugins/themefisher-fonts/css/themefisher-fonts.min.css">  
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Theme Stylesheet -->
+  <link rel="stylesheet" href="#" id="color-changer">
+  
+  <!--Favicon-->
+  <link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+  <!--Skrypt obliczajacy koszt przejechania 100 km -->
+  <script type="text/javascript">
+    function koszt()
+    {
+        var srednie_spalanie = +document.getElementById("srednie_spalanie").value;
+        var obciazenie = +document.getElementById("obciazenie").value;
+        var cena = +document.getElementById("cena").value;
+        var dlugosc_trasy = +document.getElementById("dlugosc_trasy").value;
+
+        srednie_spalanie = parseFloat(srednie_spalanie);
+        obciazenie = parseFloat(obciazenie);
+        cena = parseFloat(cena);
+        dlugosc_trasy = parseFloat(dlugosc_trasy);
+
+        var spalanie_dodatkowe = (obciazenie *0.6) / 100;
+        var spalanie_calkowite=spalanie_dodatkowe+srednie_spalanie;
+        var koszt = (dlugosc_trasy / 100) * spalanie_calkowite * cena;
+        var koszt_maly = (dlugosc_trasy / 100) * srednie_spalanie * cena;
+        var roznica = koszt-koszt_maly;
+            
+        if(obciazenie==0){
+            
+            alert("Przjechanie"+dlugosc_trasy+"km bez dodatkowego obciążenia będzie kosztowało "+koszt_maly+"zł.")
+        }
+        else{
+
+            alert("Przejechanie"+dlugosc_trasy+"km z obciążeniem "+obciazenie+"kg będzie kosztowało "+koszt+"zł. Jest to o "+roznica+"zł więcej niż bez obciązenia.")
+        }
+        
+
+        document.getElementById("srednie").innerHTML=srednie_spalanie+' l/100km';
+        document.getElementById("dodatek").innerHTML=spalanie_dodatkowe+' l/100km';
+        document.getElementById("kg").innerHTML=obciazenie+' kg';
+        document.getElementById("zl").innerHTML=koszt+' zł';
+        document.getElementById("km").innerHTML=dlugosc_trasy+"km";
+    }
+</script>
+</head>
+<body class="dark">
+
+  <div class="preloader">
+    <div class="loading-mask"></div>
+    <div class="loading-mask"></div>
+    <div class="loading-mask"></div>
+    <div class="loading-mask"></div>
+    <div class="loading-mask"></div>
+  </div>
+<main class="site-wrapper">
+  <div class="pt-table">
+    <div class="pt-tablecell page-welcome relative">
+      <!-- .close -->
+      <a href="index.html" class="page-close"><i class="tf-ion-close"></i></a>
+      <!-- /.close -->
+
+      <div class="author-image-large">
+        <h3>Dane z poprzedniego obliczenia:</h3>
+        <p>Wprowadzone średnie spalanie:<p id="srednie"></p></p></p>
+        <p>Wprowadzone dodatkowe obciążenie: <p id="kg"></p></p>
+        <p>Długość trasy: <p id="km"></p></p>
+        <p>Przez obciążenie spalanie rośnie o: <p id="dodatek"></p></p>
+        <p>Koszt przejechania 100km: <p id="zl"></p></p>
+      </div>
+
+
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-6 col-lg-7">
+            <div class="page-title">
+              <h2>Kalkulator Kosztów  <span class="primary">Podróży</span></h2>
+
+              <input class="form-control" id="srednie_spalanie" type="number" placeholder="Średnie spalanie samochodu na 100km bez obciążenia" data-sb-validations="required" /> <br />
+
+              <input class="form-control" id="dlugosc_trasy" type="number" placeholder="Wprowadz długość planowanej trasy" data-sb-validations="required" /> <br />
+
+              <input class="form-control" id="cena" type="number" placeholder="Wprowadż cene paliwa za litr" data-sb-validations="required" /> <br />
+
+              <input class="form-control" id="obciazenie" type="number" placeholder="Wprowadź dodatkowe obciążenie w kg (opcjonalnie)" data-sb-validations="required" /> <br />
+
+              <button class="btn btn-primary btn-xl enabled" type="submit" value="Oblicz" onclick="koszt()">Oblicz</button><br />
+
+              
+            </div>
+          </div>
+        </div> <!-- /.row -->
+      </div> <!-- /.container -->
+
+      <nav class="page-nav clear">
+  <div class="container">
+    <div class="flex flex-middle space-between">
+    </div>
+  </div>
+  <!-- /.page-nav -->
+</nav>
+      <!-- /.container -->
+
+    </div> <!-- /.pt-tablecell -->
+  </div> <!-- /.pt-table -->
+</main> <!-- /.site-wrapper -->
+
+
+<!-- 
+Essential Scripts
+=====================================-->
+<script src="plugins/jquery-2.2.4.min.js"></script>
+<script src="plugins/bootstrap/bootstrap.min.js"></script>
+<script src="plugins/jquery.nicescroll.min.js"></script>
+<script src="plugins/isotope/isotope.pkgd.min.js"></script>
+<script src="plugins/slick/slick.min.js"></script>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
